@@ -81,7 +81,7 @@
             let password = document.querySelector('#password').value;
             if (email.trim() === '') {
                 Swal.fire({
-                    icon: 'danger',
+                    icon: 'info',
                     title: 'Birşeyler Ters  Gitti...',
                     text: 'Email Boş Olamaz !',
                     confirmButtonText: 'Tamam'

@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 
 class adminController extends Controller
 {
-    public  function login(){
-        return view('admin.login');
+
+
+    public function  index(){
+
+       return view('admin.dashboard');
     }
 }

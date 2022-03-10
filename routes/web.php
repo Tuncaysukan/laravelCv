@@ -25,6 +25,10 @@ Route::get('/contact',[frontController::class,'contact'])->name('contact');
 
 ///Admin Routes
 
+Route::prefix('manager')->middleware('auth')->group(function (){
+        Route::get('/',[adminController::class,'index'])->name('manager.index');
+    }
+);
 
 
 //Log  view

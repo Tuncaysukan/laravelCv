@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminController\educationController;
 use App\Http\Controllers\frontendController\frontController;
 use App\Http\Controllers\adminController\adminController;
 use Illuminate\Support\Facades\Route;
@@ -26,8 +27,13 @@ Route::get('/contact',[frontController::class,'contact'])->name('contact');
 ///Admin Routes
 
 Route::prefix('manager')->middleware('auth')->group(function (){
-        Route::get('/',[adminController::class,'index'])->name('manager.index');
-    }
+    Route::get('/',[adminController::class,'index'])->name('manager.index');
+    Route::get('/education-list',[educationController::class,'list'])->name('manager.education.list');
+    Route::get('/education-add',[educationController::class,'add'])->name('manager.edication.add');
+    Route::post('/education-add',[educationController::class,'addPost'])->name('manager.edication.add.post');
+
+
+}
 );
 
 

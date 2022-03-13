@@ -40,12 +40,18 @@
                             @foreach($data as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->edicationDate}}</td>
+                                    <td>{{\Carbon\Carbon::parse($item->edicationDate)->format("d-m-Y")}}</td>
                                     <td>{{$item->edicationUniversity}}</td>
                                     <td>{{$item->edicationSection}}</td>
                                     <td>{{$item->edicationDescriptions}}</td>
                                     <td>
-                                        {{ $item->status ==1 ? "Aktif" : "Pasif" }}
+                                        @if   ($item->status ==1)   <a data-id="{{$item->id}}" href="javascript:void(0)"
+                                                                       type="button"
+                                                                       class="btn btn-success changeStatus btn-md">Aktif</a>
+                                        @else
+                                            <a data-id="{{$item->id}}" type="button" href="javascript:void(0)"
+                                               class="btn btn-danger changeStatus btn-md">Pasif</a>
+                                        @endif
                                     </td>
 
                                 </tr>
@@ -57,4 +63,47 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('js')
+    <script>
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr("content")
+            }
+
+        });
+        $('.changeStatus').click(function () {
+            let data = $(this).data('id');
+
+            $.ajax({
+                url: "{{route('manager.education.changeStatus')}}",
+                type: "Post",
+                async: false,
+                data: {
+                    data: data
+                },
+                success: function (response) {
+
+                    Swal.fire({
+                        icon:'success',
+                        title:'Başarılı',
+                        text:data + 'Lütfen ilgili ID  kontrol ediniz..'+response.newStatus +'olarak güncellenmiştir',
+                        confirmButtonText:'Tamam',
+                    }) ;
+
+                }     ,
+                error:function () {
+
+                }
+            })
+              // .done(function () {
+              //
+              // }).fail(function () {
+              //})
+
+        })
+
+    </script>
 @stop

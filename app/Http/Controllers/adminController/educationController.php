@@ -48,4 +48,17 @@ class educationController extends Controller
         return redirect()->route('manager.education.list');
 
     }
+
+
+    public  function  changeStatus(Request $request){
+        $id=$request->data;
+       $change=educationModel::find($id);
+if ($change->status<=0){
+    educationModel::update([
+        'status'=>1
+    ]);
+}else{ educationModel::update(['status'=>0]); }
+
+       dd($change->status);
+    }
 }

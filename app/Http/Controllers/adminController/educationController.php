@@ -10,8 +10,8 @@ class educationController extends Controller
 {
     public function list()
     {
-        $data=educationModel::all();
-        return view('admin.pages.educations.educationList',compact('data'));
+        $data = educationModel::all();
+        return view('admin.pages.educations.educationList', compact('data'));
     }
 
     public function add()
@@ -50,15 +50,43 @@ class educationController extends Controller
     }
 
 
-    public  function  changeStatus(Request $request){
-        $id=$request->data;
-       $change=educationModel::find($id);
-if ($change->status<=0){
-    educationModel::update([
-        'status'=>1
-    ]);
-}else{ educationModel::update(['status'=>0]); }
+    public function changeStatus(Request $request)
+    {
+        $newStatus=null;
+        $id = $request->data;
+        $change = educationModel::find($id);
 
-       dd($change->status);
+        $status=$change->status;
+
+        if ($status) {
+           $status=0;
+           $newStatus='Pasif';
+        } else {
+            $status=1;
+            $newStatus='Aktif';
+        }
+        $change->status=$status;
+        $change->save();
+
+        return response()->json([
+            'newStatus'=>$newStatus,
+            'data'=>$id,
+            'status'=>$status
+        ]);
+
+
+    }
+
+    public function  edit ($id){
+        dd($id);
+    }
+
+    public  function delete(Request  $request ){
+
+        $id=$request->data;
+
+       $education= educationModel::where('id',$id)->delete();
+
+        return response()->json([],200);
     }
 }

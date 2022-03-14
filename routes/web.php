@@ -18,20 +18,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [frontController::class, 'index'])->name('index');
 Route::get('/resume', [frontController::class, 'resume'])->name('resume');
-Route::get('/portfolio',[frontController::class,'portfolio'])->name('portfolio');
-Route::get('/blog',[frontController::class,'blog'])->name('blog');
-Route::get('/contact',[frontController::class,'contact'])->name('contact');
-
+Route::get('/portfolio', [frontController::class, 'portfolio'])->name('portfolio');
+Route::get('/blog', [frontController::class, 'blog'])->name('blog');
+Route::get('/contact', [frontController::class, 'contact'])->name('contact');
 
 
 ///Admin Routes
 
-Route::prefix('manager')->middleware('auth')->group(function (){
-    Route::get('/',[adminController::class,'index'])->name('manager.index');
-    Route::get('/education-list',[educationController::class,'list'])->name('manager.education.list');
-    Route::post('education-changeStatus', [educationController::class,'changeStatus'])->name('manager.education.changeStatus');
-    Route::get('/education-add',[educationController::class,'add'])->name('manager.edication.add');
-    Route::post('/education-add',[educationController::class,'addPost'])->name('manager.edication.add.post');
+Route::prefix('manager')->middleware('auth')->group(function () {
+    Route::get('/', [adminController::class, 'index'])->name('manager.index');
+    Route::get('/education-list', [educationController::class, 'list'])->name('manager.education.list');
+    Route::post('education-changeStatus', [educationController::class, 'changeStatus'])->name('manager.education.changeStatus');
+    Route::get('/education-add', [educationController::class, 'add'])->name('manager.education.add');
+    Route::post('/education-add', [educationController::class, 'addPost'])->name('manager.education.add.post');
+    Route::post('/education-delete',[educationController::class,'delete'])->name('manager.education.delete');
+    Route::post('/education-edit',[educationController::class,'edit'])->name('manager.education.edit');
 
 
 }

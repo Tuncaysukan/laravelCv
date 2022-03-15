@@ -30,16 +30,40 @@
                                 <th>#</th>
                                 <th>Düzenle</th>
                                 <th>Sil</th>
-                                <th>Eğitim Tarihi.</th>
-                                <th>Bölüm</th>
-                                <th>Üniversite</th>
+                                <th>Tarihler</th>
+                                <th>Firma Adı</th>
+                                <th>Görev</th>
                                 <th>Açıklama</th>
                                 <th>Durum</th>
 
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($data as $item)
+                                <tr id="formRemove">
+                                    <td>{{$item->id}}</td>
+                                    <td><a data-id="{{$item->id}}"
+                                           class="btn deleteBtn btn-outline-danger btn-icon-text"
+                                           href="javascript:void (0)">Sil</a></td>
+                                    <td><a data-id="{{$item->id}}"
+                                           class="btn editBtn btn-outline-secondary btn-icon-text"
+                                           href="{{route('manager.education.addShow',['educationId'=>$item->id])}}">Düzenle</a></td>
+                                    <td>{{$item->experinceDate}}</td>
+                                    <td>{{$item->experinceName}}</td>
+                                    <td>{{$item->experinceSection}}</td>
+                                    <td>{{$item->experinceDescriptions}}</td>
+                                    <td>
+                                        @if   ($item->status ==1)   <a data-id="{{$item->id}}" href="javascript:void(0)"
+                                                                       type="button"
+                                                                       class="btn btn-success changeStatus btn-md">Aktif</a>
+                                        @else
+                                            <a data-id="{{$item->id}}" type="button" href="javascript:void(0)"
+                                               class="btn btn-danger changeStatus btn-md">Pasif</a>
+                                        @endif
+                                    </td>
 
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\adminController\educationController;
+use App\Http\Controllers\experinceController\experinceControl;
 use App\Http\Controllers\frontendController\frontController;
 use App\Http\Controllers\adminController\adminController;
-use  App\Http\Controllers\experınceController\experınceControl;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,8 +40,10 @@ Route::prefix('manager')->middleware('auth')->group(function () {
 
 
     //  Deneyimler  Route
-    Route::get('/experınce-list',[experınceControl::class,'index'])->name('manager.experince.list');
-    Route::get('/experınce-add', [experınceControl::class, 'add'])->name('manager.experince.add');
+    Route::get('/experınce-list',[experinceControl::class,'index'])->name('manager.experince.list');
+    Route::get('/experınce-add', [experinceControl::class, 'add'])->name('manager.experince.add');
+    Route::post('/experience-add', [experinceControl::class, 'save'])->name('manager.experince.addPost');
+
 
 
 

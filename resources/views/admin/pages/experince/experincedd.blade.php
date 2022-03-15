@@ -20,7 +20,7 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <form class="forms-sample" action="" id="createEducationForm" method="post" >
+                    <form class="forms-sample" action="{{route('manager.experince.addPost')}}" id="createEducationForm" method="post" >
                         @csrf
 
                         @if ($errors->any())
@@ -34,21 +34,21 @@
                         @endif
 
                         <div class="form-group">
-                            <label for="edicationDate">Eğitim Tarihi</label>
-                            <input type="text" class="form-control"  name="edicationDate" id="edicationDate" placeholder="Eğitim Tarihi">
+                            <label for="experinceDate"> Tarih</label>
+                            <input type="text" class="form-control"  name="experinceDate" id="experinceDate" placeholder="Çalışma Tarihi">
                             <small>Örnek 2010 - 2015</small>
                         </div>
                         <div class="form-group">
-                            <label for="edicationUniversity">Üniversite Adı</label>
-                            <input type="text" class="form-control" placeholder="Üniversite Adı" name="edicationUniversity" id="edicationUniversity" >
+                            <label for="experinceName">Firma  Adı</label>
+                            <input type="text" class="form-control" placeholder="Firma Adı" name="experinceName" id="experinceName" >
                         </div>
                         <div class="form-group">
-                            <label for="edicationSection">Üniversite Bölüm</label>
-                            <input type="text" class="form-control" name="edicationSection" id="edicationSection" placeholder="Üniversite Bölüm">
+                            <label for="experinceSection">Görev Aldığı Bölüm</label>
+                            <input type="text" class="form-control" name="experinceSection" id="experinceSection" placeholder="Görev Aldığı Bölüm">
                         </div>
                         <div class="form-group">
-                            <label for="edicationDescriptions">Açıklama</label>
-                            <textarea class="form-control" rows="7" cols="30" name="edicationDescriptions" id="edicationDescriptions"></textarea>
+                            <label for="experinceDescriptions">Açıklama</label>
+                            <textarea class="form-control" rows="7" cols="30" name="experinceDescriptions" id="experinceDescriptions"></textarea>
                         </div>
 
                         <div class="form-check form-check-flat form-check-success">
@@ -72,7 +72,7 @@
         createBtn.click(
 
             function () {
-            if ($('#edicationUniversity').val().trim()==''){
+            if ($('#experinceName').val().trim()==''){
                Swal.fire({
                    icon:'info',
                    title:'Uyarı',
@@ -82,7 +82,7 @@
 
                )
             }
-            else if ($('#edicationDate').val().trim()==''){
+            else if ($('#experinceDate').val().trim()==''){
                 Swal.fire
                 ({
                     icon: 'info',
@@ -92,7 +92,7 @@
                 })
 
             }
-            else if ($('#edicationSection').val().trim()==''){
+            else if ($('#experinceSection').val().trim()==''){
                 Swal.fire
                 ({
                     icon: 'info',

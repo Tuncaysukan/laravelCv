@@ -17,10 +17,10 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Cv deki Eğitimler</h4>
+                    <h4 class="card-title">Cv deki Deneyimler</h4>
                     <div class="card-header">
-                        <a class="nav-link btn btn-success create-new-button" href="{{route('manager.education.add')}}">
-                            Yeni Eğitim Ekle</a>
+                        <a class="nav-link btn btn-success create-new-button" href="{{route('manager.experince.add')}}">
+                            Yeni Deneyim Ekle</a>
                     </div>
                     </p>
                     <div class="table-responsive">
@@ -39,31 +39,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($data as $item)
-                                <tr id="formRemove">
-                                    <td>{{$item->id}}</td>
-                                    <td><a data-id="{{$item->id}}"
-                                           class="btn deleteBtn btn-outline-danger btn-icon-text"
-                                           href="javascript:void (0)">Sil</a></td>
-                                    <td><a data-id="{{$item->id}}"
-                                           class="btn editBtn btn-outline-secondary btn-icon-text"
-                                           href="{{route('manager.education.addShow',['educationId'=>$item->id])}}">Düzenle</a></td>
-                                    <td>{{$item->edicationDate}}</td>
-                                    <td>{{$item->edicationUniversity}}</td>
-                                    <td>{{$item->edicationSection}}</td>
-                                    <td>{{$item->edicationDescriptions}}</td>
-                                    <td>
-                                        @if   ($item->status ==1)   <a data-id="{{$item->id}}" href="javascript:void(0)"
-                                                                       type="button"
-                                                                       class="btn btn-success changeStatus btn-md">Aktif</a>
-                                        @else
-                                            <a data-id="{{$item->id}}" type="button" href="javascript:void(0)"
-                                               class="btn btn-danger changeStatus btn-md">Pasif</a>
-                                        @endif
-                                    </td>
 
-                                </tr>
-                            @endforeach
                             </tbody>
                         </table>
                     </div>

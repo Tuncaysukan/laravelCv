@@ -52,41 +52,70 @@ class educationController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $newStatus=null;
+        $newStatus = null;
         $id = $request->data;
         $change = educationModel::find($id);
 
-        $status=$change->status;
+        $status = $change->status;
 
         if ($status) {
-           $status=0;
-           $newStatus='Pasif';
+            $status = 0;
+            $newStatus = 'Pasif';
         } else {
-            $status=1;
-            $newStatus='Aktif';
+            $status = 1;
+            $newStatus = 'Aktif';
         }
-        $change->status=$status;
+        $change->status = $status;
         $change->save();
 
         return response()->json([
-            'newStatus'=>$newStatus,
-            'data'=>$id,
-            'status'=>$status
+            'newStatus' => $newStatus,
+            'data' => $id,
+            'status' => $status
         ]);
 
 
     }
 
-    public function  edit ($id){
-        dd($id);
+    public function edit(Request $request)
+    {
+        $id = $request->educationId;
+
+
+        $status = 0;
+        if (isset($request->status)) {
+            $status = 1;
+        }
+        $data=educationModel::where('id',$id)->update([
+            'edicationDate'=>$request->edicationDate,
+            "edicationUniversity" => $request->edicationUniversity,
+            "edicationSection" => $request->edicationSection,
+            "edicationDescriptions" => $request->edicationDescriptions,
+            "status" => $status
+        ]);
+
+        alert()->success('Başarılı', 'Güncelleme İşlemi Tamamlandı')->showConfirmButton('Tamam', '#3085d6')->persistent(true, true);
+
+        return redirect()->route('manager.education.list');
+
     }
 
-    public  function delete(Request  $request ){
+    public function delete(Request $request)
+    {
 
-        $id=$request->data;
+        $id = $request->data;
 
-       $education= educationModel::where('id',$id)->delete();
+        $education = educationModel::where('id', $id)->delete();
 
-        return response()->json([],200);
+        return response()->json([], 200);
+    }
+
+    public function addShow(Request $request)
+    {
+        $id = $request->educationId;
+        $data = educationModel::findOrFail($id);
+
+        return view('admin.pages.educations.educationEdit', compact('data'));
+
     }
 }

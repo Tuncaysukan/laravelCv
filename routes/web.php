@@ -43,7 +43,11 @@ Route::prefix('manager')->middleware('auth')->group(function () {
     Route::get('/experınce-list',[experinceControl::class,'index'])->name('manager.experince.list');
     Route::get('/experınce-add', [experinceControl::class, 'add'])->name('manager.experince.add');
     Route::post('/experience-add', [experinceControl::class, 'save'])->name('manager.experince.addPost');
-
+    Route::post('/experience-delete',[experinceControl::class,'delete'])->name('manager.experince.delete');
+    Route::post('/experince-changeStatus',[experinceControl::class,'changeStatus'])->name('manager.experince.changeStatus');
+    Route::get('/experince-update',[experinceControl::class,'update'])->name('manager.experince.update');
+    Route::post('/experince-addShow', [experinceControl::class, 'edit'])->name('manager.experince.addShow');
+//manager.experince.addShow
 
 
 

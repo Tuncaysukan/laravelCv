@@ -47,7 +47,7 @@
                                            href="javascript:void (0)">Sil</a></td>
                                     <td><a data-id="{{$item->id}}"
                                            class="btn editBtn btn-outline-secondary btn-icon-text"
-                                           href="{{route('manager.education.addShow',['educationId'=>$item->id])}}">Düzenle</a></td>
+                                           href="{{route('manager.experince.update',['experinceId'=>$item->id])}}">Düzenle</a></td>
                                     <td>{{$item->experinceDate}}</td>
                                     <td>{{$item->experinceName}}</td>
                                     <td>{{$item->experinceSection}}</td>
@@ -87,7 +87,7 @@
             let self = $(this);
 
             $.ajax({
-                url: "{{route('manager.education.changeStatus')}}",
+                url: "{{route('manager.experince.changeStatus')}}",
                 type: "Post",
                 async: false,
                 data: {
@@ -139,7 +139,7 @@
                 if (result.isConfirmed) {
 
                     $.ajax({
-                        url: '{{route('manager.education.delete')}}',
+                        url: '{{route('manager.experince.delete')}}',
                         type: "Post",
                         async: false,
                         data: {

@@ -49,7 +49,6 @@ class educationController extends Controller
 
     }
 
-
     public function changeStatus(Request $request)
     {
         $newStatus = null;
